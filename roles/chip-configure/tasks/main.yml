@@ -33,7 +33,40 @@
 - name: Generate the appropriate locales
   command: /usr/sbin/locale-gen
 
+# Make the configuration directory
+- name: Create the xorg.conf.d directory
+  file:
+    state: directory
+    path: /etc/X11/xorg.conf.d/
+    force: yes
+    owner: root
+    group: root
+    mode: 0755
+
+# Download the keyboard configuration file
+- name: Fetch the keyboard configuration for the PocketChip
+  get_url:
+    url: https://raw.githubusercontent.com/NextThingCo/pocketchip-configs/a524554d0c2b8715f4b7131e68055b645dcb140b/pocketchip-configs/X11/xkb/symbols/pocketchip
+    dest: /usr/share/X11/xkb/symbols/pocketchip
+    owner: root
+    group: root
+    mode: 0644
+
 # Configure Keyboard 
+- name: Install the PocketKeyboard configuration file
+  copy:
+    src: pocketchip.conf
+    dest: /etc/X11/xorg.conf.d/
+    owner: root
+    group: root
+    mode: 0644
 
 # Install Touchscreen Calibration script
+- name: Install the Touchscreen Calibration script
+  copy:
+    src: calibratescreen.sh
+    dest: /usr/local/bin
+    owner: root
+    group: root
+    mode: 0755
 
