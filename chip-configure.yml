@@ -1,0 +1,11 @@
+---
+
+- hosts: chips
+  gather_facts: no
+  tasks:
+    - name: Install python
+      raw: apt-get install -y python
+
+- hosts: chips
+  roles: 
+    - chip-configure

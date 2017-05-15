@@ -1,0 +1,39 @@
+---
+
+# Install Packages
+- name: Install Software packages
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items:  "{{ software_packages }}"
+
+# Configure Timezone
+- name: Link /etc/localtime to /usr/share/zoneinfo/{{ timezone }}
+  file:
+    state: link
+    path: "/etc/localtime"
+    src: "/usr/share/zoneinfo/{{ timezone }}"
+    force: yes
+    owner: root
+    group: root
+
+- name: Set the timezone using timedatectl
+  command: "/usr/bin/timedatectl set-timezone {{ timezone }}"
+
+# Configure Locale
+# Install an appropriate /etc/locale.gen
+- name: Add the {{ host_locale }} locale
+  lineinfile:
+    path: /etc/locale.gen
+    regexp: "{{ host_locale }}"
+    line: "{{ host_locale }}"
+    state: present
+
+# run locale-gen
+- name: Generate the appropriate locales
+  command: /usr/sbin/locale-gen
+
+# Configure Keyboard 
+
+# Install Touchscreen Calibration script
+

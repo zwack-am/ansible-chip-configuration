@@ -1,0 +1,14 @@
+---
+
+host_locale: "en_US.UTF-8 UTF-8"
+
+timezone: "America/Los_Angeles"
+
+software_packages:
+  - git
+  - locales
+  - openssh-client
+  - xinput-calibrator
+
+compiler_packages:
+  - build-essential
