@@ -70,3 +70,6 @@
     group: root
     mode: 0755
 
+- debug: 
+    msg: "You will be able to calibrate your touchscreen by just running 'sudo /usr/local/bin/calibratescreen.sh'"
+
