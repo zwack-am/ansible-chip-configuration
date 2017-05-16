@@ -1,6 +1,7 @@
 ---
 
 software_packages:
+  - git
   - build-essential
   - libx11-dev
   - libxft-dev
