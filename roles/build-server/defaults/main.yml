@@ -2,4 +2,7 @@
 
 software_packages:
   - build-essential
+  - libx11-dev
+  - libxft-dev
+  - libxinerama-dev
 
